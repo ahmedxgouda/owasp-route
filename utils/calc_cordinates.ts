@@ -1,8 +1,10 @@
+import type { Coordinates } from "@/types/coordinates";
+
 export function calcCoordinates(
   latitude: number,
   longitude: number,
   thresholdKm: number
-): { minLat: number; maxLat: number; minLng: number; maxLng: number } {
+): Coordinates {
   const earthRadiusKm = 6371;
 
   const latDelta = (thresholdKm / earthRadiusKm) * (180 / Math.PI);
@@ -10,9 +12,9 @@ export function calcCoordinates(
 
 
   return {
-    minLat: latitude - latDelta,
-    maxLat: latitude + latDelta,
-    minLng: longitude - lngDelta,
-    maxLng: longitude + lngDelta,
+    minLatitude: latitude - latDelta,
+    maxLatitude: latitude + latDelta,
+    minLongitude: longitude - lngDelta,
+    maxLongitude: longitude + lngDelta,
   };
 }
