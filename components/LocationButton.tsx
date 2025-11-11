@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import type { Location } from '@/types/location';
 
 export default function LocationButton() {
-    const [location, setLocation] = useState<{ latitude: number; longitude: number } | null>(null);
+    const [location, setLocation] = useState<Location | null>(null);
     const handleEnableLocation = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
