@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "OWASP Route",
-  description: "Your route to the nearest OWASP chapter and events.",
+  description: "Your route to the nearest OWASP chapters and events.",
 };
 
 export default function RootLayout({
