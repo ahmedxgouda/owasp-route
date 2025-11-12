@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
-import LocationButton from "@/components/LocationButton";
+import MapArea from "@/components/MapArea";
 
-export default async function Home() {
+export default function Home() {
   return (
     <>
       <Header />
@@ -12,7 +12,7 @@ export default async function Home() {
             OWASP Route is a tool to help you find and connect with OWASP chapters and events around the world.
           </p>
         </section>
-        <LocationButton />
+        <MapArea />
       </main>
     </>
   );

@@ -2,8 +2,11 @@
 
 import { useState } from 'react';
 import type { Location } from '@/types/location';
+import dynamic from 'next/dynamic';
 
-export default function LocationButton() {
+const Map = dynamic(() => import('@/components/Map'), { ssr: false });
+
+export default function MapArea() {
     const [location, setLocation] = useState<Location | null>(null);
     const [error, setError] = useState<string | null>(null);
     const handleEnableLocation = () => {
@@ -11,8 +14,8 @@ export default function LocationButton() {
             navigator.geolocation.getCurrentPosition(
             (position) => {
                 setLocation({
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
                 });
             }, 
             () => {
@@ -24,18 +27,16 @@ export default function LocationButton() {
     };
 
     return (
-        (location) ? (<div className="text-green-600 font-semibold">
-            Location Enabled
-        </div>
+        (location) ? (<Map lat={location.lat}  lng={location.lng}/>
     ) : (
         <>
-        <button
-        className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition"
-        onClick={handleEnableLocation}
-        >
-        Enable Location Services
-        </button>
-        {error && <div className="text-red-600 font-semibold mt-2">{error}</div>}
+            <button
+            className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition"
+            onClick={handleEnableLocation}
+            >
+                Enable Location Services
+            </button>
+            {error && <div className="text-red-600 font-semibold mt-2">{error}</div>}
         </>
     )
   );
