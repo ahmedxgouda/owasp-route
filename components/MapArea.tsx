@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import type { Location } from "@/types/location";
-import dynamic from "next/dynamic";
+import { useState } from 'react';
+import type { Location } from '@/types/location';
+import dynamic from 'next/dynamic';
 
-const Map = dynamic(() => import("@/components/Map"), { ssr: false });
+const Map = dynamic(() => import('@/components/Map'), { ssr: false });
 
 export default function MapArea() {
   const [location, setLocation] = useState<Location | null>(null);
@@ -19,13 +19,11 @@ export default function MapArea() {
           });
         },
         () => {
-          setError(
-            "Unable to retrieve your location. Please check your browser settings.",
-          );
-        },
+          setError('Unable to retrieve your location. Please check your browser settings.');
+        }
       );
     } else {
-      setError("Geolocation is not supported by this browser.");
+      setError('Geolocation is not supported by this browser.');
     }
   };
 

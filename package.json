@@ -15,7 +15,6 @@
     "leaflet-routing-machine": "^3.2.12",
     "next": "16.0.1",
     "owasp-nest": "^0.3.0",
-    "prettier": "^3.6.2",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-leaflet": "^5.0.0"
@@ -26,6 +25,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
+    "prettier": "^3.6.2",
     "eslint-config-next": "16.0.1",
     "tailwindcss": "^4",
     "typescript": "^5"
