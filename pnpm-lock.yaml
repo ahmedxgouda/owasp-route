@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      leaflet:
+        specifier: ^1.9.4
+        version: 1.9.4
+      leaflet-routing-machine:
+        specifier: ^3.2.12
+        version: 3.2.12
       next:
         specifier: 16.0.1
         version: 16.0.1(@babel/core@7.28.5)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -20,6 +26,9 @@ importers:
       react-dom:
         specifier: 19.2.0
         version: 19.2.0(react@19.2.0)
+      react-leaflet:
+        specifier: ^5.0.0
+        version: 5.0.0(leaflet@1.9.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
     devDependencies:
       '@tailwindcss/postcss':
         specifier: ^4
@@ -324,6 +333,13 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
+  '@mapbox/corslite@0.0.7':
+    resolution: {integrity: sha512-w/uS474VFjmqQ7fFWIMZINQM1BAQxDLuoJaZZIPES1BmeYpCtlh9MtbFxKGGDAsfvut8/HircIsVvEYRjQ+iMg==}
+
+  '@mapbox/polyline@0.2.0':
+    resolution: {integrity: sha512-GCddO0iw6AzOQqZgBmjEQI9Pgo40/yRgkTkikGctE01kNBN0ThWYuAnTD+hRWrAWMV6QJ0rNm4m8DAsaAXE7Pg==}
+    hasBin: true
+
   '@napi-rs/wasm-runtime@0.2.12':
     resolution: {integrity: sha512-ZVWUcfwY4E/yPitQJl481FjFo3K22D6qF0DuFH6Y/nbnE11GY5uguDxZMGXPQ8WQ0128MXQD7TnfHyK4oWoIJQ==}
 
@@ -396,6 +412,13 @@ packages:
   '@nolyfill/is-core-module@1.0.39':
     resolution: {integrity: sha512-nn5ozdjYQpUCZlWGuxcJY/KpxkWQs4DcbMCmKojjyrYDEAGy4Ce19NN4v5MduafTwJlbKc99UA8YhSVqq9yPZA==}
     engines: {node: '>=12.4.0'}
+
+  '@react-leaflet/core@3.0.0':
+    resolution: {integrity: sha512-3EWmekh4Nz+pGcr+xjf0KNyYfC3U2JjnkWsh0zcqaexYqmmB5ZhH37kz41JXGmKzpaMZCnPofBBm64i+YrEvGQ==}
+    peerDependencies:
+      leaflet: ^1.9.0
+      react: ^19.0.0
+      react-dom: ^19.0.0
 
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
@@ -1361,6 +1384,12 @@ packages:
     resolution: {integrity: sha512-MbjN408fEndfiQXbFQ1vnd+1NoLDsnQW41410oQBXiyXDMYH5z505juWa4KUE1LqxRC7DgOgZDbKLxHIwm27hA==}
     engines: {node: '>=0.10'}
 
+  leaflet-routing-machine@3.2.12:
+    resolution: {integrity: sha512-HLde58G1YtD9xSIzZavJ6BPABZaV1hHeGst8ouhzuxmSC3s32NVtADT+njbIUMW1maHRCrsgTk/E4hz5QH7FrA==}
+
+  leaflet@1.9.4:
+    resolution: {integrity: sha512-nxS1ynzJOmOlHp+iL3FyWqK89GtNL8U8rvlMOsQdTTssxZwCXh8N2NB3GDQOL+YR3XnWyZAxwQixURb+FA74PA==}
+
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
@@ -1550,6 +1579,9 @@ packages:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
     engines: {node: '>= 0.8.0'}
 
+  osrm-text-instructions@0.13.4:
+    resolution: {integrity: sha512-ge4ZTIetMQKAHKq2MwWf83ntzdJN20ndRKRaVNoZ3SkDkBNO99Qddz7r6+hrVx38I+ih6Rk5T1yslczAB6Q9Pg==}
+
   owasp-nest@0.3.0:
     resolution: {integrity: sha512-4w70XHqmayBtgsH3WMFNDfFvwEBobti+P830c9c5naHiPFcbEmHprjPAePREUrNz0iBuZytJ0rzM5vimblCXsQ==}
 
@@ -1624,6 +1656,13 @@ packages:
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
+
+  react-leaflet@5.0.0:
+    resolution: {integrity: sha512-CWbTpr5vcHw5bt9i4zSlPEVQdTVcML390TjeDG0cK59z1ylexpqC6M1PJFjV8jD7CF+ACBFsLIDs6DRMoLEofw==}
+    peerDependencies:
+      leaflet: ^1.9.0
+      react: ^19.0.0
+      react-dom: ^19.0.0
 
   react@19.2.0:
     resolution: {integrity: sha512-tmbWg6W31tQLeB5cdIBOicJDJRR2KzXsV7uSK9iNfLWQ5bIZfxuPEHp7M8wiHyHnn0DD1i7w3Zmin0FtkrwoCQ==}
@@ -2191,6 +2230,10 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
+  '@mapbox/corslite@0.0.7': {}
+
+  '@mapbox/polyline@0.2.0': {}
+
   '@napi-rs/wasm-runtime@0.2.12':
     dependencies:
       '@emnapi/core': 1.7.0
@@ -2241,6 +2284,12 @@ snapshots:
       fastq: 1.19.1
 
   '@nolyfill/is-core-module@1.0.39': {}
+
+  '@react-leaflet/core@3.0.0(leaflet@1.9.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+    dependencies:
+      leaflet: 1.9.4
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
 
   '@rtsao/scc@1.1.0': {}
 
@@ -3365,6 +3414,14 @@ snapshots:
     dependencies:
       language-subtag-registry: 0.3.23
 
+  leaflet-routing-machine@3.2.12:
+    dependencies:
+      '@mapbox/corslite': 0.0.7
+      '@mapbox/polyline': 0.2.0
+      osrm-text-instructions: 0.13.4
+
+  leaflet@1.9.4: {}
+
   levn@0.4.1:
     dependencies:
       prelude-ls: 1.2.1
@@ -3540,6 +3597,8 @@ snapshots:
       type-check: 0.4.0
       word-wrap: 1.2.5
 
+  osrm-text-instructions@0.13.4: {}
+
   owasp-nest@0.3.0:
     dependencies:
       zod: 4.1.12
@@ -3606,6 +3665,13 @@ snapshots:
       scheduler: 0.27.0
 
   react-is@16.13.1: {}
+
+  react-leaflet@5.0.0(leaflet@1.9.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+    dependencies:
+      '@react-leaflet/core': 3.0.0(leaflet@1.9.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      leaflet: 1.9.4
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
 
   react@19.2.0: {}
 
