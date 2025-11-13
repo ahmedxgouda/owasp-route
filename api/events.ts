@@ -1,9 +1,10 @@
 import { apiUrl } from '@/api/root';
 import { calcCoordinates } from '@/utils/calc_cordinates';
+import type { Event } from '@/types/event';
 
-const THRESHOLD_DISTANCE_KM = 50;
+const THRESHOLD_DISTANCE_KM = 300;
 
-export function getEvents(latitude: number, longitude: number) {
+export function getEvents(latitude: number, longitude: number): Promise<Event[]> {
   const { minLatitude, maxLatitude, minLongitude, maxLongitude } = calcCoordinates(
     latitude,
     longitude,
@@ -18,5 +19,10 @@ export function getEvents(latitude: number, longitude: number) {
         'Content-Type': 'application/json',
       },
     }
-  ).then((res) => res.json());
+  ).then((res) => {
+    if (!res.ok) {
+      throw new Error('Failed to fetch chapters');
+    }
+    return res.json().then((data) => data.items);
+  });
 }
