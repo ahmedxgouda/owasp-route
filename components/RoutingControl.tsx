@@ -13,12 +13,6 @@ export default function RoutingControl({ waypoints }: { waypoints: L.LatLngExpre
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const Routing = (L as any).Routing;
-    console.debug(
-      'RoutingControl init - Routing present?',
-      !!Routing,
-      'waypoints.length=',
-      waypoints.length
-    );
     if ((!Routing || waypoints.length < 2) && controlRef.current) {
       map.removeControl(controlRef.current);
       controlRef.current = null;

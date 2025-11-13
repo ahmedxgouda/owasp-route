@@ -66,6 +66,7 @@ export default function Map({
                   More info
                 </Link>
               )}
+              {/* TODO: Add start date and end date for events */}
             </Popup>
           </Marker>
         ))}
