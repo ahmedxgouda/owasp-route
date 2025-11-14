@@ -10,8 +10,16 @@ We welcome contributions from the community to help improve OWASP Route! Whether
 
 ## Installation
 
+### Local Setup (without Docker)
+
 1. Clone the repository:
 2. Navigate to the project directory:
 3. Install dependencies with `pnpm install`.
 4. Create a `.env` file in the root directory and add your environment variables (copy from `.env.example`).
 5. Run the development server with `pnpm dev`.
+
+### Using Docker
+
+1. Clone the repository and navigate to the project directory.
+2. Add your environment variables to a `.env` file (copy from `.env.example`).
+3. run `make run` to build and start the application in a Docker container.
