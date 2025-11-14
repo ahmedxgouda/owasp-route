@@ -17,6 +17,7 @@ export default function MapArea() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [data, setData] = useState<Item[]>([]);
+
   const handleEnableLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -41,7 +42,7 @@ export default function MapArea() {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        setData([]); // Clear previous data
+        setData([]);
         const items = await getData(option, location.lat, location.lng);
         setData(items);
       } catch {
@@ -55,48 +56,74 @@ export default function MapArea() {
   }, [location, option]);
 
   return location ? (
-    <div className="flex flex-col w-full items-center justify-center">
-      <div className="flex items-center mb-4">
+    <div className="flex flex-col w-full items-center justify-center max-w-6xl animate-fade-in">
+      <div className="flex gap-4 mb-6">
         <button
-          className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition mb-4"
+          className={`btn ${option === 'chapters' ? 'btn-primary' : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200'}`}
           onClick={() => {
             setOption('chapters');
             setDestination(null);
           }}
         >
-          Show Chapters
+          📚 Chapters
         </button>
         <button
-          className="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700 transition mb-4 ml-4"
+          className={`btn ${option === 'events' ? 'btn-secondary' : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200'}`}
           onClick={() => {
             setOption('events');
             setDestination(null);
           }}
         >
-          Show Events
+          🎉 Events
         </button>
       </div>
-      {isLoading && <LoadingSpinner />}
-      {!data.length && !isLoading && option && (
-        <div className="text-gray-600 font-semibold mt-2">No {option} found nearby.</div>
+
+      {error && (
+        <div className="card bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 text-red-800 dark:text-red-200 mb-4 animate-scale-in">
+          ⚠️ {error}
+        </div>
       )}
-      <Map
-        location={location}
-        data={data}
-        option={option}
-        destination={destination}
-        setDestination={setDestination}
-      />
+
+      {isLoading && (
+        <div className="mb-6">
+          <LoadingSpinner />
+        </div>
+      )}
+
+      {!data.length && !isLoading && option && (
+        <div className="card text-center mb-4 animate-scale-in">
+          <p className="text-gray-600 dark:text-gray-400">
+            No {option} found nearby within 300km radius.
+          </p>
+        </div>
+      )}
+
+      <div className="w-full animate-scale-in">
+        <Map
+          location={location}
+          data={data}
+          option={option}
+          destination={destination}
+          setDestination={setDestination}
+        />
+      </div>
     </div>
   ) : (
-    <>
-      <button
-        className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition"
-        onClick={handleEnableLocation}
-      >
-        Enable Location Services
-      </button>
-      {error && <div className="text-red-600 font-semibold mt-2">{error}</div>}
-    </>
+    <div className="flex flex-col items-center justify-center animate-fade-in">
+      <div className="card text-center mb-6 max-w-md">
+        <h2 className="text-2xl font-bold mb-4">📍 Get Started</h2>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">
+          Enable location services to discover OWASP chapters and events near you.
+        </p>
+        <button className="btn btn-primary w-full" onClick={handleEnableLocation}>
+          🌍 Enable Location Services
+        </button>
+      </div>
+      {error && (
+        <div className="card bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 text-red-800 dark:text-red-200 max-w-md animate-scale-in">
+          ⚠️ {error}
+        </div>
+      )}
+    </div>
   );
 }

@@ -36,12 +36,13 @@ export default function Map({
   if (destination) waypoints.push(destination as L.LatLngExpression);
 
   return (
-    <>
+    <div className="w-full">
       <MapContainer
         center={location ?? { lat: 0, lng: 0 }}
         zoom={7}
         scrollWheelZoom={false}
-        style={{ height: '500px', width: '100%', maxWidth: '800px' }}
+        style={{ height: '600px', width: '100%' }}
+        className="z-0"
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -49,7 +50,11 @@ export default function Map({
         />
         {location && (
           <Marker position={location}>
-            <Popup>You are here</Popup>
+            <Popup>
+              <div className="text-center">
+                <strong className="text-lg">📍 You are here</strong>
+              </div>
+            </Popup>
           </Marker>
         )}
 
@@ -64,45 +69,48 @@ export default function Map({
             }}
           >
             <Popup>
-              <strong>{item.name}</strong>
-              {item.start_date && (
-                <>
-                  <br />
-                  Start: <DateComponent dateString={item.start_date} />
-                </>
-              )}
-              {item.end_date && (
-                <>
-                  <br />
-                  End: <DateComponent dateString={item.end_date} />
-                </>
-              )}
-              {item.url && (
-                <>
-                  <br />
-                  <Link href={item.url} target="_blank" rel="noopener noreferrer">
-                    More info
+              <div className="min-w-[200px]">
+                <strong className="text-lg block mb-2">{item.name}</strong>
+                {item.start_date && (
+                  <p className="text-sm mb-1">
+                    🗓️ <strong>Start:</strong> <DateComponent dateString={item.start_date} />
+                  </p>
+                )}
+                {item.end_date && (
+                  <p className="text-sm mb-2">
+                    🏁 <strong>End:</strong> <DateComponent dateString={item.end_date} />
+                  </p>
+                )}
+                {item.url && (
+                  <Link
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block mt-2 px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors text-sm"
+                  >
+                    🔗 More info
                   </Link>
-                </>
-              )}
+                )}
+              </div>
             </Popup>
           </Marker>
         ))}
-        {data.length && <RoutingControl waypoints={waypoints} option={option} />}
+        {data.length > 0 && <RoutingControl waypoints={waypoints} option={option} />}
       </MapContainer>
 
-      <div className="flex items-center justify-center mt-3">
+      <div className="flex items-center justify-center mt-6">
         {destination ? (
-          <button
-            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition"
-            onClick={() => setDestination(null)}
-          >
-            Clear route
+          <button className="btn btn-danger" onClick={() => setDestination(null)}>
+            ✖️ Clear Route
           </button>
         ) : (
-          <div className="text-sm text-gray-600">Click a marker to route to it.</div>
+          <div className="card text-center">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              👆 Click any marker to route to it
+            </p>
+          </div>
         )}
       </div>
-    </>
+    </div>
   );
 }
