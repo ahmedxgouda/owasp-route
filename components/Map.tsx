@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import type { Location } from '@/types/location';
 import type { Item } from '@/types/item';
+import type { DataType } from '@/types/data_type';
 import RoutingControl from '@/components/RoutingControl';
 
 import 'leaflet/dist/leaflet.css';
@@ -16,9 +17,19 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 });
 
-export default function Map({ location, data }: { location: Location | null; data: Item[] }) {
-  const [destination, setDestination] = useState<Location | null>(null);
-
+export default function Map({
+  location,
+  data,
+  option,
+  destination,
+  setDestination,
+}: {
+  location: Location | null;
+  data: Item[];
+  option: DataType | null;
+  destination: Location | null;
+  setDestination: Dispatch<SetStateAction<Location | null>>;
+}) {
   const waypoints: L.LatLngExpression[] = [];
   if (location) waypoints.push(location as L.LatLngExpression);
   if (destination) waypoints.push(destination as L.LatLngExpression);
@@ -90,9 +101,7 @@ export default function Map({ location, data }: { location: Location | null; dat
             </Popup>
           </Marker>
         ))}
-
-        {/* Add routing control when we have at least origin and destination */}
-        <RoutingControl waypoints={waypoints} />
+        {data.length && <RoutingControl waypoints={waypoints} option={option} />}
       </MapContainer>
 
       <div className="flex items-center justify-center mt-3">
