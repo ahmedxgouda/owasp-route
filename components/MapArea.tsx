@@ -3,10 +3,8 @@
 import { useState, useEffect } from 'react';
 import type { Location } from '@/types/location';
 import dynamic from 'next/dynamic';
-import { Chapter } from '@/types/chapter';
-import { Event } from '@/types/event';
-import { getChapters } from '@/api/chapters';
-import { getEvents } from '@/api/events';
+import type { Item } from '@/types/item';
+import { getData } from '@/api/data';
 
 const Map = dynamic(() => import('@/components/Map'), { ssr: false });
 
@@ -14,7 +12,7 @@ export default function MapArea() {
   const [location, setLocation] = useState<Location | null>(null);
   const [option, setOption] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [data, setData] = useState<Chapter[] | Event[]>([]);
+  const [data, setData] = useState<Item[]>([]);
   const handleEnableLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -36,7 +34,7 @@ export default function MapArea() {
   useEffect(() => {
     if (location && option) {
       if (option === 'chapters') {
-        getChapters(location.lat, location.lng)
+        getData('chapters', location.lat, location.lng)
           .then((chapters) => {
             setData(chapters);
           })
@@ -44,7 +42,7 @@ export default function MapArea() {
             setError('Failed to fetch chapters.');
           });
       } else if (option === 'events') {
-        getEvents(location.lat, location.lng)
+        getData('events', location.lat, location.lng)
           .then((events) => {
             setData(events);
           })

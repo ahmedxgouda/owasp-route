@@ -4,8 +4,7 @@ import { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import type { Location } from '@/types/location';
-import type { Event } from '@/types/event';
-import type { Chapter } from '@/types/chapter';
+import type { Item } from '@/types/item';
 import RoutingControl from '@/components/RoutingControl';
 
 import 'leaflet/dist/leaflet.css';
@@ -17,13 +16,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 });
 
-export default function Map({
-  location,
-  data,
-}: {
-  location: Location | null;
-  data: Chapter[] | Event[];
-}) {
+export default function Map({ location, data }: { location: Location | null; data: Item[] }) {
   const [destination, setDestination] = useState<Location | null>(null);
 
   const waypoints: L.LatLngExpression[] = [];
@@ -48,7 +41,7 @@ export default function Map({
           </Marker>
         )}
 
-        {data.map((item: Chapter | Event) => (
+        {data.map((item: Item) => (
           <Marker
             key={item.key}
             position={{ lat: item.latitude, lng: item.longitude }}
@@ -60,13 +53,40 @@ export default function Map({
           >
             <Popup>
               <strong>{item.name}</strong>
-              <br />
-              {item.url && (
-                <Link href={item.url} target="_blank" rel="noopener noreferrer">
-                  More info
-                </Link>
+              {item.start_date && (
+                <>
+                  <br />
+                  <em>
+                    Start:{' '}
+                    {new Date(item.start_date).toLocaleDateString(undefined, {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </em>
+                </>
               )}
-              {/* TODO: Add start date and end date for events */}
+              {item.end_date && (
+                <>
+                  <br />
+                  <em>
+                    End:{' '}
+                    {new Date(item.end_date).toLocaleDateString(undefined, {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </em>
+                </>
+              )}
+              {item.url && (
+                <>
+                  <br />
+                  <Link href={item.url} target="_blank" rel="noopener noreferrer">
+                    More info
+                  </Link>
+                </>
+              )}
             </Popup>
           </Marker>
         ))}

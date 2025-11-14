@@ -1,16 +1,11 @@
 import { apiUrl } from '@/api/root';
 import { calcCoordinates } from '@/utils/calc_cordinates';
-import type { Chapter } from '@/types/chapter';
-import type { Event } from '@/types/event';
+import type { Item } from '@/types/item';
 import type { DataType } from '@/types/data_type';
 
 const THRESHOLD_DISTANCE_KM = 300;
 
-export function getData<T extends Chapter | Event>(
-  type: DataType,
-  latitude: number,
-  longitude: number
-): Promise<T[]> {
+export function getData(type: DataType, latitude: number, longitude: number): Promise<Item[]> {
   const { minLatitude, maxLatitude, minLongitude, maxLongitude } = calcCoordinates(
     latitude,
     longitude,
