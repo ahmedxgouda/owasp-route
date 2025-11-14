@@ -7,6 +7,7 @@ import type { Location } from '@/types/location';
 import type { Item } from '@/types/item';
 import type { DataType } from '@/types/data_type';
 import RoutingControl from '@/components/RoutingControl';
+import DateComponent from '@/components/DateComponent';
 
 import 'leaflet/dist/leaflet.css';
 import Link from 'next/link';
@@ -67,27 +68,13 @@ export default function Map({
               {item.start_date && (
                 <>
                   <br />
-                  <em>
-                    Start:{' '}
-                    {new Date(item.start_date).toLocaleDateString(undefined, {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    })}
-                  </em>
+                  Start: <DateComponent dateString={item.start_date} />
                 </>
               )}
               {item.end_date && (
                 <>
                   <br />
-                  <em>
-                    End:{' '}
-                    {new Date(item.end_date).toLocaleDateString(undefined, {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    })}
-                  </em>
+                  End: <DateComponent dateString={item.end_date} />
                 </>
               )}
               {item.url && (
