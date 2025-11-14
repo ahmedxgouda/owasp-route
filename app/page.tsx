@@ -8,7 +8,7 @@ export default function Home() {
         <section className="mb-12">
           <p className="text-gray-700 mb-4">
             OWASP Route is a tool to help you find and connect with OWASP chapters and events around
-            the world.
+            you.
           </p>
         </section>
         <MapArea />
