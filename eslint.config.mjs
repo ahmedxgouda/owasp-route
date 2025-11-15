@@ -13,6 +13,13 @@ const eslintConfig = defineConfig([
     'build/**',
     'next-env.d.ts',
   ]),
+  // Add rule overrides
+  {
+    files: ['**/*.test.js', '**/*.test.jsx', '**/*.test.ts', '**/*.test.tsx'],
+    rules: {
+      'react/display-name': 'off',
+    },
+  },
 ]);
 
 export default eslintConfig;
