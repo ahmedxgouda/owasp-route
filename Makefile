@@ -4,3 +4,7 @@ run:
 
 check:
 	@pnpm format && pnpm lint
+
+test:
+	@docker build -f docker/Dockerfile.test -t owasp-route-test . \
+	&& docker run --rm --name owasp-route-test owasp-route-test pnpm test
