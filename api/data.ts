@@ -1,5 +1,5 @@
 import { apiUrl } from '@/api/root';
-import { calcCoordinates } from '@/utils/calc_cordinates';
+import { calcCoordinates } from '@/utils/calc_coordinates';
 import type { Item } from '@/types/item';
 import type { DataType } from '@/types/data_type';
 

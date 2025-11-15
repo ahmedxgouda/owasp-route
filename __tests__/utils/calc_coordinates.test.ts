@@ -1,4 +1,4 @@
-import { calcCoordinates } from '@/utils/calc_cordinates';
+import { calcCoordinates } from '@/utils/calc_coordinates';
 
 describe('calcCoordinates', () => {
   it('is exported as a function', () => {
