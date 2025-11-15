@@ -4,9 +4,9 @@ OWASP Route is a web application that helps users find the nearest OWASP chapter
 
 ## Features
 
-- Provides routes to the nearest OWASP chapters.
-- Calculates distance based on user location.
-- Provides routes to upcoming OWASP events.
+- Provides routes to the nearest OWASP chapters and events.
+- Provides a customizable search radius.
+- Calculates coordinates based on user location and search radius.
 
 ## Contributing
 

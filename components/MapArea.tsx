@@ -13,6 +13,7 @@ const Map = dynamic(() => import('@/components/Map'), { ssr: false });
 export default function MapArea() {
   const [location, setLocation] = useState<Location | null>(null);
   const [destination, setDestination] = useState<Location | null>(null);
+  const [threshold, setThreshold] = useState<number>(300);
   const [option, setOption] = useState<DataType | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -43,7 +44,7 @@ export default function MapArea() {
       try {
         setIsLoading(true);
         setData([]);
-        const items = await getData(option, location.lat, location.lng);
+        const items = await getData(option, location.lat, location.lng, threshold);
         setData(items);
       } catch {
         setError(`Failed to fetch ${option}.`);
@@ -53,7 +54,7 @@ export default function MapArea() {
     };
 
     fetchData();
-  }, [location, option]);
+  }, [location, option, threshold]);
 
   return location ? (
     <div className="flex flex-col w-full items-center justify-center max-w-6xl animate-fade-in">
@@ -77,6 +78,23 @@ export default function MapArea() {
           🎉 Events
         </button>
       </div>
+      <div className="mb-6">
+        <label className="mr-4 text-gray-700 dark:text-gray-400">
+          Search Radius: {threshold} km
+        </label>
+        <input
+          type="range"
+          min="50"
+          max="1000"
+          step="50"
+          value={threshold}
+          onChange={(e) => {
+            setDestination(null);
+            setThreshold(Number(e.target.value));
+          }}
+          className="w-64"
+        />
+      </div>
 
       {error && (
         <div className="card bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 text-red-800 dark:text-red-200 mb-4 animate-scale-in">
@@ -93,7 +111,7 @@ export default function MapArea() {
       {!data.length && !isLoading && option && (
         <div className="card text-center mb-4 animate-scale-in">
           <p className="text-gray-600 dark:text-gray-400">
-            No {option} found nearby within 300km radius.
+            No {option} found nearby within {threshold}km radius.
           </p>
         </div>
       )}
