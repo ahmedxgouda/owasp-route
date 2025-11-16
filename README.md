@@ -16,6 +16,10 @@ Contributions are welcome! Please fork the repository and submit a pull request 
 
 This project was developed as a part of OWASP Nest API Hackathon 2025. It aims to enhance the accessibility of OWASP chapters and events for users around the globe.
 
+## Critical Note
+
+This project currently depends on this [unmerged PR](https://github.com/OWASP/Nest/pull/2584). Make sure to run the Nest API locally with the changes from that PR for the application to work correctly.
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
